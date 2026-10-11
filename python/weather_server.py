@@ -73,7 +73,7 @@ async def get_weather(city: str) -> str:
             current = forecast.json()["current"]
             log.info("raw current data: %s", current)
     except httpx.HTTPError as exc:
-        log.error("Open-Metep request failed: ", exc)
+        log.error("Open-Meteo request failed: %s", exc)
         return f"Weather service unavailable: {exc}"
 
     conditions = WMO_CODES.get(current["weather_code"], "unknown conditions")
